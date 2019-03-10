@@ -12,29 +12,22 @@ import CoreFoundation
 class TimerCell: NSTableRowView {
 	@IBOutlet var titleTextField: NSTextField!
 	@IBOutlet var timerTextField: NSTextField!
-	@IBOutlet var resetButton: NSButton!
-	@IBOutlet var actionButton: NSButton!
-
-	private var startTime: CFAbsoluteTime?{
-		didSet{
-			print("START TIME: \(startTime!)")
-		}
-	}
-	private var endTime:   CFAbsoluteTime?{
-		didSet{
-			print("END TIME: \(endTime!)")
-		}
-	}
+	@IBOutlet var actionButton:   NSButton!
+	@IBOutlet var resetButton:    NSButton!
 	
-	var elapsedTime:Double = 0.0{
-		didSet{
-			self.updateText()
-		}
-	}
-	public var isRunning = false
 	private var timerBeganCounting = false
+	private var startTime: CFAbsoluteTime?
+	private var endTime:   CFAbsoluteTime?
+	public var delegate:   TimerDelegate?
+	public var isRunning = false
+
+	var elapsedTime:Double = 0.0 { didSet{ self.updateText() } }
 	
 	@IBAction func resetButtonClick(_ sender: NSButton) { resetTimer() }
+	@IBAction func deleteButtonClick(_ sender: NSButton) {
+		guard delegate != nil else { return }
+		delegate?.removeCell(withString: titleTextField.stringValue)
+	}
 
 	//handles both pause and play
 	@IBAction func actionButtonClick(_ sender: NSButton) {
@@ -42,15 +35,12 @@ class TimerCell: NSTableRowView {
 		isRunning ? pauseTimer() : startTimer()
 	}
 	
-	
 	private func startTimer() {
-		
 		guard !isRunning else { return }
 		actionButton.title = "P"
 		isRunning = true
-		//track the starting time
 		if !timerBeganCounting{
-			startTime = CFAbsoluteTimeGetCurrent()
+			startTime = CFAbsoluteTimeGetCurrent() //track the starting time
 			timerBeganCounting = true
 		}
 		timerTextField.stringValue = "Counting..."
@@ -66,9 +56,11 @@ class TimerCell: NSTableRowView {
 	}
 	
 	private func resetTimer() {
+		startTime = nil
+		endTime   = nil
 		actionButton.title = "▶"
 		isRunning = false
-		timerTextField.stringValue = "0"
+		timerTextField.stringValue = "0 seconds"
 	}
 	private func updateText(){
 		let hours   = (Int(elapsedTime) / 3600) % 24

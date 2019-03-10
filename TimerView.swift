@@ -8,24 +8,35 @@
 
 import Cocoa
 
-class TimerView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
+protocol TimerDelegate {
+	func removeCell(withString string: String)
+}
 
+class TimerView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource, TimerDelegate{
+	
 	@IBOutlet var tableView: NSTableView!
 	public var timers = [String]()
-	
+	public var delegate: MenuDelegate?
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return timers.count
 	}
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		
 		if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init("TimerCell"), owner: nil) as? TimerCell {
 			cell.titleTextField.stringValue = timers[row]
 			cell.timerTextField.stringValue = "0 seconds"
+			cell.delegate = self
 			return cell
 		}
 		return nil
 	}
-	public func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
-		print("clicked")
+	
+	func removeCell(withString string: String){
+		guard let index = timers.firstIndex(of: string) else { return }
+		let deletionIndex = IndexSet(integer: index)
+		tableView.removeRows(at: deletionIndex, withAnimation: .slideLeft)
+		timers.remove(at: index)
+		let defaults = UserDefaults.standard
+		defaults.set(timers, forKey: "userTimers")
+		delegate?.calculateHeight()
 	}
 }

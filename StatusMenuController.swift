@@ -8,7 +8,11 @@
 
 import Cocoa
 
-class StatusMenuController: NSObject {
+protocol MenuDelegate{
+	func calculateHeight()
+}
+
+class StatusMenuController: NSObject, MenuDelegate {
 	@IBOutlet weak var menu: NSMenu!
 	@IBOutlet weak var timerView: TimerView!
 	var timerMenuItem: NSMenuItem!
@@ -16,8 +20,9 @@ class StatusMenuController: NSObject {
 	
 	override func awakeFromNib() {
 		loadTimers()
-		statusItem.title = "TTmr"
+		statusItem.title = "⑉"
 		statusItem.menu = menu
+		timerView.delegate = self
 		timerMenuItem = menu.item(withTitle: "Timers")
 		timerMenuItem.view = timerView
 		calculateHeight()
@@ -28,7 +33,7 @@ class StatusMenuController: NSObject {
 		timerView.timers = defaults.stringArray(forKey: "userTimers") ?? [String]()
 	}
 	
-	private func calculateHeight(){
+	func calculateHeight(){
 		let rows = CGFloat(timerView.numberOfRows(in: timerView.tableView))
 		let rowHeight = timerView.tableView.rowHeight + 2.75
 		let height = rows * rowHeight < 4 * rowHeight ? rows * rowHeight : 4 * rowHeight //4 * row height is the max
