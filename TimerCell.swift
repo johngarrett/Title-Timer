@@ -68,8 +68,8 @@ class TimerCell: NSTableRowView {
 		let seconds =  Int(elapsedTime) % 60
 		
 		let hoursString   = hours > 0 ? String("\(hours):") : "" //HOURS: or nothing
-		let minutesString = minutes > 0 || hours > 0 ? String("\(minutes):") : "" //HOURS:MINS:SEC or MINS:SEC or SEC
-		let secondsString = minutes == 0 && hours == 0 ? seconds == 1 ? String("\(seconds) second") : String("\(seconds) seconds") : String(seconds) //...:SEC or SEC seconds
+		let minutesString = minutes > 0 || hours > 0 ? String(format: "%02d", minutes) + String(":") : "" //HOURS:MINS:SEC or MINS:SEC or SEC
+		let secondsString = minutes == 0 && hours == 0 ? "\(seconds) " + ((seconds == 1) ? "second" : "seconds") : String(format: "%02d ", seconds) //...:SEC or SEC seconds
 		timerTextField.stringValue = hoursString + minutesString + secondsString
 	}
 }
