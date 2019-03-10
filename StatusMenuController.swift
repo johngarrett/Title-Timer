@@ -19,11 +19,20 @@ class StatusMenuController: NSObject {
 		statusItem.menu = menu
 		timerMenuItem = menu.item(withTitle: "Timers")
 		timerMenuItem.view = timerView
+		let rows = CGFloat(timerView.numberOfRows(in: timerView.tableView))
+		let rowHeight = timerView.tableView.rowHeight + 2.75
+		let height = rows * rowHeight < 4 * rowHeight ? rows * rowHeight : 4 * rowHeight //4 * row height is the max
+		timerView.frame = NSRect(x: timerView.frame.minX, y: timerView.frame.minY, width: timerView.frame.width, height: height)
 	}
 	@IBAction func quitClicked(_ sender: NSMenuItem) {
 		NSApplication.shared.terminate(self)
 	}
 	@IBAction func prefrencesClicked(_ sender: NSMenuItem) {
+		print("hey they wanna see prefrences?")
+	}
+	
+	@IBAction func addClicked(_ sender: Any) {
+		print("they wanna add somethig")
 	}
 	
 }

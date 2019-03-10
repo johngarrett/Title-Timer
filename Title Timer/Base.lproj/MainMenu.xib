@@ -26,15 +26,18 @@
                 <menuItem title="Timers" id="B7w-Ps-sad">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
+                <menuItem title="Add" keyEquivalent="a" id="Hxn-DY-kxa">
+                    <connections>
+                        <action selector="addClicked:" target="U3o-1G-Nov" id="DC8-aS-nED"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="hgy-Nl-P1P"/>
-                <menuItem title="Prefrences" id="3hF-xE-rKj">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Prefrences" keyEquivalent="," id="3hF-xE-rKj">
                     <connections>
                         <action selector="prefrencesClicked:" target="U3o-1G-Nov" id="XaG-r3-4da"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Quit" id="ORG-ci-kbt">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Quit" keyEquivalent="q" id="ORG-ci-kbt">
                     <connections>
                         <action selector="quitClicked:" target="U3o-1G-Nov" id="BQB-bW-PNe"/>
                     </connections>
@@ -42,14 +45,14 @@
             </items>
             <point key="canvasLocation" x="138.5" y="152"/>
         </menu>
-        <scrollView autohidesScrollers="YES" horizontalLineScroll="62" horizontalPageScroll="10" verticalLineScroll="62" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="FOT-sc-Wo4" customClass="TimerView" customModule="Title_Timer" customModuleProvider="target">
+        <scrollView autohidesScrollers="YES" horizontalLineScroll="62" horizontalPageScroll="10" verticalLineScroll="62" verticalPageScroll="10" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="FOT-sc-Wo4" customClass="TimerView" customModule="Title_Timer" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="240" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <clipView key="contentView" id="OQW-Zh-jaj">
+            <clipView key="contentView" drawsBackground="NO" id="OQW-Zh-jaj">
                 <rect key="frame" x="1" y="1" width="238" height="133"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="60" rowSizeStyle="automatic" viewBased="YES" id="es6-ZW-qoc">
+                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="60" viewBased="YES" id="es6-ZW-qoc">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="133"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <size key="intercellSpacing" width="3" height="2"/>
@@ -57,8 +60,8 @@
                         <tableViewGridLines key="gridStyleMask" dashed="YES"/>
                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                         <tableColumns>
-                            <tableColumn width="235" minWidth="40" maxWidth="1000" id="ft1-3O-sbb">
-                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                            <tableColumn editable="NO" width="235" minWidth="40" maxWidth="1000" id="ft1-3O-sbb">
+                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="y">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -148,6 +151,7 @@
                         </connections>
                     </tableView>
                 </subviews>
+                <nil key="backgroundColor"/>
             </clipView>
             <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1mW-wg-cIh">
                 <rect key="frame" x="1" y="118" width="238" height="16"/>

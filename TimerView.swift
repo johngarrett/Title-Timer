@@ -24,5 +24,7 @@ class TimerView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 		}
 		return nil
 	}
-
+	public func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
+		print("clicked")
+	}
 }
