@@ -44,7 +44,8 @@ class StatusMenuController: NSObject, MenuDelegate {
 		NSApplication.shared.terminate(self)
 	}
 	@IBAction func prefrencesClicked(_ sender: NSMenuItem) {
-		print("hey they wanna see prefrences?")
+		let prefs = NSViewController(nibName: "Prefrences", bundle: nil)
+		prefs.loadView()
 	}
 	
 	@IBAction func addClicked(_ sender: Any) {

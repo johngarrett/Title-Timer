@@ -26,18 +26,21 @@
                 <menuItem title="Timers" id="B7w-Ps-sad">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add" keyEquivalent="a" id="Hxn-DY-kxa">
+                <menuItem title="Add" id="Hxn-DY-kxa">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="addClicked:" target="U3o-1G-Nov" id="DC8-aS-nED"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="hgy-Nl-P1P"/>
-                <menuItem title="Prefrences" keyEquivalent="," id="3hF-xE-rKj">
+                <menuItem title="Prefrences" id="3hF-xE-rKj">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="prefrencesClicked:" target="U3o-1G-Nov" id="XaG-r3-4da"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Quit" keyEquivalent="q" id="ORG-ci-kbt">
+                <menuItem title="Quit" id="ORG-ci-kbt">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="quitClicked:" target="U3o-1G-Nov" id="BQB-bW-PNe"/>
                     </connections>
