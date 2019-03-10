@@ -15,7 +15,10 @@ protocol MenuDelegate{
 class StatusMenuController: NSObject, MenuDelegate {
 	@IBOutlet weak var menu: NSMenu!
 	@IBOutlet weak var timerView: TimerView!
+	@IBOutlet weak var tasksView: TasksView!
 	var timerMenuItem: NSMenuItem!
+	var tasksMenuItem: NSMenuItem!
+	
 	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 	
 	override func awakeFromNib() {
@@ -25,6 +28,8 @@ class StatusMenuController: NSObject, MenuDelegate {
 		timerView.delegate = self
 		timerMenuItem = menu.item(withTitle: "Timers")
 		timerMenuItem.view = timerView
+		tasksMenuItem = menu.item(withTitle: "Tasks")
+		tasksMenuItem.view = tasksView
 		calculateHeight()
 	}
 	
