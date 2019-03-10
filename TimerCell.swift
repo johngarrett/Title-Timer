@@ -28,27 +28,27 @@ class TimerCell: NSTableRowView {
 	
 	var elapsedTime:Double = 0.0{
 		didSet{
-			//HOURS: MINUTES: SECONDS
-			self.timerTextField.stringValue = String("\((Int(elapsedTime) / 3600) % 24):\((Int(elapsedTime) / 60) % 60):\(Int(elapsedTime) % 60) seconds")
+			self.updateText()
 		}
 	}
 	public var isRunning = false
 	private var timerBeganCounting = false
 	
+	@IBAction func resetButtonClick(_ sender: NSButton) { resetTimer() }
+
+	//handles both pause and play
 	@IBAction func actionButtonClick(_ sender: NSButton) {
 		//let pause = "\u{23F8}\u{FE0E}"
 		isRunning ? pauseTimer() : startTimer()
 	}
 	
-	@IBAction func resetButtonClick(_ sender: NSButton) {
-		resetTimer()
-	}
 	
 	private func startTimer() {
 		
 		guard !isRunning else { return }
 		actionButton.title = "P"
 		isRunning = true
+		//track the starting time
 		if !timerBeganCounting{
 			startTime = CFAbsoluteTimeGetCurrent()
 			timerBeganCounting = true
@@ -69,5 +69,15 @@ class TimerCell: NSTableRowView {
 		actionButton.title = "▶"
 		isRunning = false
 		timerTextField.stringValue = "0"
+	}
+	private func updateText(){
+		let hours   = (Int(elapsedTime) / 3600) % 24
+		let minutes = (Int(elapsedTime) / 60) % 60
+		let seconds =  Int(elapsedTime) % 60
+		
+		let hoursString   = hours > 0 ? String("\(hours):") : "" //HOURS: or nothing
+		let minutesString = minutes > 0 || hours > 0 ? String("\(minutes):") : "" //HOURS:MINS:SEC or MINS:SEC or SEC
+		let secondsString = minutes == 0 && hours == 0 ? seconds == 1 ? String("\(seconds) second") : String("\(seconds) seconds") : String(seconds) //...:SEC or SEC seconds
+		timerTextField.stringValue = hoursString + minutesString + secondsString
 	}
 }
