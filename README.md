@@ -2,6 +2,8 @@
 
 An open source project to help you keep track of your time spent on projects, tasks, etc.
 
+download it here: [zip file](https://github.com/johngarrett/Title-Timer/releases/tag/v0.1)
+
 ## Purpose
 
 My use case is tracking hours for timesheets. Before getting to work I start a timer then pause it whenever I take breaks. At the end of the day, I record my time and reset the timers. 
