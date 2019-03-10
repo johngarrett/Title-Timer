@@ -18,7 +18,6 @@ class StatusMenuController: NSObject, MenuDelegate {
 	@IBOutlet weak var tasksView: TasksView!
 	var timerMenuItem: NSMenuItem!
 	var tasksMenuItem: NSMenuItem!
-	
 	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 	
 	override func awakeFromNib() {
@@ -30,6 +29,7 @@ class StatusMenuController: NSObject, MenuDelegate {
 		timerMenuItem.view = timerView
 		tasksMenuItem = menu.item(withTitle: "Tasks")
 		tasksMenuItem.view = tasksView
+		tasksView.loadTasks()
 		calculateHeight()
 	}
 	
