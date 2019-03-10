@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CoreFoundation
 
 class TimerCell: NSTableRowView {
 	@IBOutlet var titleTextField: NSTextField!
@@ -14,53 +15,57 @@ class TimerCell: NSTableRowView {
 	@IBOutlet var resetButton: NSButton!
 	@IBOutlet var actionButton: NSButton!
 
-	public var isRunning = false
-	private var counter = 0.0{
+	private var startTime: CFAbsoluteTime?{
 		didSet{
-			DispatchQueue.main.async { [unowned self] in
-				self.timerTextField.stringValue = String(format: "%.1f", self.counter)
-			}
-			print(counter)
+			print("START TIME: \(startTime!)")
 		}
 	}
-	private var timer = Timer()
-    
+	private var endTime:   CFAbsoluteTime?{
+		didSet{
+			print("END TIME: \(endTime!)")
+		}
+	}
+	
+	var elapsedTime:Double = 0.0{
+		didSet{
+			self.timerTextField.stringValue = String(elapsedTime.truncatingRemainder(dividingBy: 60))
+		}
+	}
+	public var isRunning = false
+	private var timerBeganCounting = false
+	
 	@IBAction func actionButtonClick(_ sender: NSButton) {
-		let pause = "\u{23F8}\u{FE0E}"
-		
-		//sender.title = isRunning ? "P" : "▶" //force unicode expression TODO
+		//let pause = "\u{23F8}\u{FE0E}"
 		isRunning ? pauseTimer() : startTimer()
 	}
+	
 	@IBAction func resetButtonClick(_ sender: NSButton) {
 		resetTimer()
 	}
 	
 	private func startTimer() {
-		//guard !isRunning else { return }
-		if isRunning{
-			return
-		}
-		DispatchQueue.global(qos: .background).async {
-			self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.UpdateTimer), userInfo: nil, repeats: true)
-		}
+		
+		guard !isRunning else { return }
 		actionButton.title = "P"
 		isRunning = true
+		if !timerBeganCounting{
+			startTime = CFAbsoluteTimeGetCurrent()
+			timerBeganCounting = true
+		}
 	}
 	
 	private func pauseTimer() {
 		actionButton.title = "▶"
-		timer.invalidate()
 		isRunning = false
+		endTime = CFAbsoluteTimeGetCurrent()
+		guard startTime != nil, endTime != nil else { return }
+		elapsedTime += endTime! - startTime!
+		timerBeganCounting = false
 	}
 	
 	private func resetTimer() {
 		actionButton.title = "▶"
-		timer.invalidate()
 		isRunning = false
-		counter = 0.0
-		timerTextField.stringValue = String(counter)
-	}
-	@objc func UpdateTimer() {
-		counter = counter + 0.1
+		timerTextField.stringValue = "0"
 	}
 }
