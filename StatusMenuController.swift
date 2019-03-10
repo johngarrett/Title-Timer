@@ -15,15 +15,26 @@ class StatusMenuController: NSObject {
 	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 	
 	override func awakeFromNib() {
-		statusItem.title = "Title Timer"
+		loadTimers()
+		statusItem.title = "TTmr"
 		statusItem.menu = menu
 		timerMenuItem = menu.item(withTitle: "Timers")
 		timerMenuItem.view = timerView
+		calculateHeight()
+	}
+	
+	private func loadTimers(){
+		let defaults = UserDefaults.standard
+		timerView.timers = defaults.stringArray(forKey: "userTimers") ?? [String]()
+	}
+	
+	private func calculateHeight(){
 		let rows = CGFloat(timerView.numberOfRows(in: timerView.tableView))
 		let rowHeight = timerView.tableView.rowHeight + 2.75
 		let height = rows * rowHeight < 4 * rowHeight ? rows * rowHeight : 4 * rowHeight //4 * row height is the max
 		timerView.frame = NSRect(x: timerView.frame.minX, y: timerView.frame.minY, width: timerView.frame.width, height: height)
 	}
+	
 	@IBAction func quitClicked(_ sender: NSMenuItem) {
 		NSApplication.shared.terminate(self)
 	}
@@ -32,7 +43,26 @@ class StatusMenuController: NSObject {
 	}
 	
 	@IBAction func addClicked(_ sender: Any) {
-		print("they wanna add somethig")
+		let alert = NSAlert()
+		alert.messageText = "Enter the name of the new timer:"
+		alert.addButton(withTitle: "Ok")
+		alert.addButton(withTitle: "Cancel")
+		
+		let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: alert.window.frame.width - 100, height: 24))
+		alert.accessoryView = textField
+		
+		let buttonPressed = alert.runModal()
+		
+		if buttonPressed == NSApplication.ModalResponse.alertFirstButtonReturn{
+			let defaults = UserDefaults.standard
+			var array = defaults.stringArray(forKey: "userTimers") ?? [String]()
+			array.append(textField.stringValue)
+			defaults.set(array, forKey: "userTimers")
+			timerView.timers = array
+			let insertionIndex = IndexSet(integer: timerView.timers.count - 1)
+			timerView.tableView.insertRows(at: insertionIndex, withAnimation: .effectGap)
+			calculateHeight()
+		}
 	}
 	
 }

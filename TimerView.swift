@@ -11,15 +11,16 @@ import Cocoa
 class TimerView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 
 	@IBOutlet var tableView: NSTableView!
+	public var timers = [String]()
 	
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return 4
+		return timers.count
 	}
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		
 		if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init("TimerCell"), owner: nil) as? TimerCell {
-			cell.titleTextField.stringValue = "Trafficlight"
-			cell.timerTextField.stringValue = "00:00:00"
+			cell.titleTextField.stringValue = timers[row]
+			cell.timerTextField.stringValue = "0 seconds"
 			return cell
 		}
 		return nil
