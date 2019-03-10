@@ -28,7 +28,8 @@ class TimerCell: NSTableRowView {
 	
 	var elapsedTime:Double = 0.0{
 		didSet{
-			self.timerTextField.stringValue = String(elapsedTime.truncatingRemainder(dividingBy: 60))
+			//HOURS: MINUTES: SECONDS
+			self.timerTextField.stringValue = String("\((Int(elapsedTime) / 3600) % 24):\((Int(elapsedTime) / 60) % 60):\(Int(elapsedTime) % 60) seconds")
 		}
 	}
 	public var isRunning = false
@@ -52,6 +53,7 @@ class TimerCell: NSTableRowView {
 			startTime = CFAbsoluteTimeGetCurrent()
 			timerBeganCounting = true
 		}
+		timerTextField.stringValue = "Counting..."
 	}
 	
 	private func pauseTimer() {
