@@ -10,6 +10,9 @@
 		D453DF0E22349A2F006C9587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453DF0D22349A2F006C9587 /* AppDelegate.swift */; };
 		D453DF1022349A31006C9587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D453DF0F22349A31006C9587 /* Assets.xcassets */; };
 		D453DF1322349A31006C9587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D453DF1122349A31006C9587 /* MainMenu.xib */; };
+		D453DF1C22349EC7006C9587 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453DF1B22349EC7006C9587 /* StatusMenuController.swift */; };
+		D4FCE9F52234A4C1007E9A7F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE9F42234A4C1007E9A7F /* TimerView.swift */; };
+		D4FCE9F72234A5F7007E9A7F /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		D453DF1222349A31006C9587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D453DF1422349A31006C9587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D453DF1522349A31006C9587 /* Title_Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Title_Timer.entitlements; sourceTree = "<group>"; };
+		D453DF1B22349EC7006C9587 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		D4FCE9F42234A4C1007E9A7F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +41,9 @@
 		D453DF0122349A2F006C9587 = {
 			isa = PBXGroup;
 			children = (
+				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
+				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
+				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
 				D453DF0C22349A2F006C9587 /* Title Timer */,
 				D453DF0B22349A2F006C9587 /* Products */,
 			);
@@ -130,7 +139,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FCE9F52234A4C1007E9A7F /* TimerView.swift in Sources */,
+				D453DF1C22349EC7006C9587 /* StatusMenuController.swift in Sources */,
 				D453DF0E22349A2F006C9587 /* AppDelegate.swift in Sources */,
+				D4FCE9F72234A5F7007E9A7F /* TimerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +288,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "johnPersonal.Title-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -295,6 +308,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "johnPersonal.Title-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
