@@ -12,7 +12,6 @@
 		D453DF1322349A31006C9587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D453DF1122349A31006C9587 /* MainMenu.xib */; };
 		D453DF1C22349EC7006C9587 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453DF1B22349EC7006C9587 /* StatusMenuController.swift */; };
 		D496D42E2234B662005EE248 /* Prefrences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D496D42D2234B662005EE248 /* Prefrences.xib */; };
-		D4EA04002234C57000D3636D /* JBTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA03FF2234C57000D3636D /* JBTimer.swift */; };
 		D4FCE9F52234A4C1007E9A7F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE9F42234A4C1007E9A7F /* TimerView.swift */; };
 		D4FCE9F72234A5F7007E9A7F /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */; };
 /* End PBXBuildFile section */
@@ -26,7 +25,6 @@
 		D453DF1522349A31006C9587 /* Title_Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Title_Timer.entitlements; sourceTree = "<group>"; };
 		D453DF1B22349EC7006C9587 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		D496D42D2234B662005EE248 /* Prefrences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Prefrences.xib; sourceTree = "<group>"; };
-		D4EA03FF2234C57000D3636D /* JBTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBTimer.swift; sourceTree = "<group>"; };
 		D4FCE9F42234A4C1007E9A7F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,7 +45,6 @@
 			children = (
 				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
 				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
-				D4EA03FF2234C57000D3636D /* JBTimer.swift */,
 				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
 				D496D42D2234B662005EE248 /* Prefrences.xib */,
 				D453DF0C22349A2F006C9587 /* Title Timer */,
@@ -146,7 +143,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4EA04002234C57000D3636D /* JBTimer.swift in Sources */,
 				D4FCE9F52234A4C1007E9A7F /* TimerView.swift in Sources */,
 				D453DF1C22349EC7006C9587 /* StatusMenuController.swift in Sources */,
 				D453DF0E22349A2F006C9587 /* AppDelegate.swift in Sources */,
