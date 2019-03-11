@@ -43,10 +43,6 @@
 		D453DF0122349A2F006C9587 = {
 			isa = PBXGroup;
 			children = (
-				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
-				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
-				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
-				D496D42D2234B662005EE248 /* Prefrences.xib */,
 				D453DF0C22349A2F006C9587 /* Title Timer */,
 				D453DF0B22349A2F006C9587 /* Products */,
 			);
@@ -63,10 +59,14 @@
 		D453DF0C22349A2F006C9587 /* Title Timer */ = {
 			isa = PBXGroup;
 			children = (
-				D453DF0D22349A2F006C9587 /* AppDelegate.swift */,
-				D453DF0F22349A31006C9587 /* Assets.xcassets */,
+				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
+				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
+				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
+				D496D42D2234B662005EE248 /* Prefrences.xib */,
 				D453DF1122349A31006C9587 /* MainMenu.xib */,
+				D453DF0F22349A31006C9587 /* Assets.xcassets */,
 				D453DF1422349A31006C9587 /* Info.plist */,
+				D453DF0D22349A2F006C9587 /* AppDelegate.swift */,
 				D453DF1522349A31006C9587 /* Title_Timer.entitlements */,
 			);
 			path = "Title Timer";

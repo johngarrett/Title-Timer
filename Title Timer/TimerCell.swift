@@ -21,14 +21,13 @@ class TimerCell: NSTableRowView {
 	public var delegate:   TimerDelegate?
 	public var isRunning = false
 
-	public var elapsedTime:Double = 0.0 {
+	public var elapsedTime: Double = 0.0 { //time thats calcuated
 		didSet{
 			UserDefaults.standard.set(elapsedTime, forKey:  "\(titleTextField.stringValue)_TIME_ELAPSED")
 			self.updateText()
 		}
 	}
-	
-	public var time: String = "0 seconds"{
+	public var time: String = "0 seconds"{ //time that's displayed
 		didSet{
 			UserDefaults.standard.set(time, forKey: "\(titleTextField.stringValue)_TIME")
 			timerTextField.stringValue = time
@@ -58,7 +57,7 @@ class TimerCell: NSTableRowView {
 		timerTextField.stringValue = "Counting..."
 	}
 	
-	public func pauseTimer() {
+	public func pauseTimer() { //pause is the only open method
 		actionButton.title = "▶"
 		isRunning = false
 		endTime = CFAbsoluteTimeGetCurrent()

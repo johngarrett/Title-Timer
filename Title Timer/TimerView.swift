@@ -42,6 +42,7 @@ class TimerView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource, Timer
 	}
 	//pause the timers causing the times to be saved
 	func saveValues(completion: ()-> Void){
+		guard timers.count > 0 else { completion(); return }
 		for i in 0...timers.count - 1 {
 			if let cell = tableView.view(atColumn: 0, row: i, makeIfNecessary: false) as? TimerCell{
 				cell.pauseTimer()
