@@ -60,6 +60,7 @@ class TimerCell: NSTableRowView {
 		endTime   = nil
 		actionButton.title = "▶"
 		isRunning = false
+		elapsedTime = 0.0
 		timerTextField.stringValue = "0 seconds"
 	}
 	private func updateText(){
