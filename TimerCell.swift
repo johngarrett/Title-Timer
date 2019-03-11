@@ -21,7 +21,19 @@ class TimerCell: NSTableRowView {
 	public var delegate:   TimerDelegate?
 	public var isRunning = false
 
-	var elapsedTime:Double = 0.0 { didSet{ self.updateText() } }
+	public var elapsedTime:Double = 0.0 {
+		didSet{
+			UserDefaults.standard.set(elapsedTime, forKey:  "\(titleTextField.stringValue)_TIME_ELAPSED")
+			self.updateText()
+		}
+	}
+	
+	public var time: String = "0 seconds"{
+		didSet{
+			UserDefaults.standard.set(time, forKey: "\(titleTextField.stringValue)_TIME")
+			timerTextField.stringValue = time
+		}
+	}
 	
 	@IBAction func resetButtonClick(_ sender: NSButton) { resetTimer() }
 	@IBAction func deleteButtonClick(_ sender: NSButton) {
@@ -46,7 +58,7 @@ class TimerCell: NSTableRowView {
 		timerTextField.stringValue = "Counting..."
 	}
 	
-	private func pauseTimer() {
+	public func pauseTimer() {
 		actionButton.title = "▶"
 		isRunning = false
 		endTime = CFAbsoluteTimeGetCurrent()
@@ -71,6 +83,6 @@ class TimerCell: NSTableRowView {
 		let hoursString   = hours > 0 ? String("\(hours):") : "" //HOURS: or nothing
 		let minutesString = minutes > 0 || hours > 0 ? String(format: "%02d", minutes) + String(":") : "" //HOURS:MINS:SEC or MINS:SEC or SEC
 		let secondsString = minutes == 0 && hours == 0 ? "\(seconds) " + ((seconds == 1) ? "second" : "seconds") : String(format: "%02d ", seconds) //...:SEC or SEC seconds
-		timerTextField.stringValue = hoursString + minutesString + secondsString
+		time = hoursString + minutesString + secondsString
 	}
 }

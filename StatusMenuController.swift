@@ -41,7 +41,9 @@ class StatusMenuController: NSObject, MenuDelegate {
 	}
 	
 	@IBAction func quitClicked(_ sender: NSMenuItem) {
-		NSApplication.shared.terminate(self)
+		timerView.saveValues {
+			NSApplication.shared.terminate(self)
+		}
 	}
 	@IBAction func prefrencesClicked(_ sender: NSMenuItem) {
 		let prefs = NSViewController(nibName: "Prefrences", bundle: nil)
