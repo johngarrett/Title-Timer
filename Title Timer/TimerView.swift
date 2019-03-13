@@ -25,6 +25,8 @@ class TimerView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource, Timer
 			cell.titleTextField.stringValue = timers[row]
 			cell.elapsedTime = UserDefaults.standard.double(forKey: "\(timers[row])_TIME_ELAPSED")
 			cell.time        = UserDefaults.standard.string(forKey: "\(timers[row])_TIME") ?? "0 seconds"
+			cell.actionButton.image = NSImage(named: "Play")
+			cell.actionButton.image?.size = NSSize(width: 16.5, height: 16.5)
 			cell.delegate = self
 			return cell
 		}

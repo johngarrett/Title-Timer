@@ -48,7 +48,9 @@ class TimerCell: NSTableRowView {
 	
 	private func startTimer() {
 		guard !isRunning else { return }
-		actionButton.title = "P"
+		actionButton.image = NSImage(named: "Pause")
+		actionButton.image?.size = NSSize(width: 20, height: 20)
+
 		isRunning = true
 		if !timerBeganCounting{
 			startTime = CFAbsoluteTimeGetCurrent() //track the starting time
@@ -58,7 +60,8 @@ class TimerCell: NSTableRowView {
 	}
 	
 	public func pauseTimer() { //pause is the only open method
-		actionButton.title = "▶"
+		actionButton.image = NSImage(named: "Play")
+		actionButton.image?.size = NSSize(width: 16.5, height: 16.5)
 		isRunning = false
 		endTime = CFAbsoluteTimeGetCurrent()
 		guard startTime != nil, endTime != nil else { return }
@@ -69,7 +72,8 @@ class TimerCell: NSTableRowView {
 	private func resetTimer() {
 		startTime = nil
 		endTime   = nil
-		actionButton.title = "▶"
+		actionButton.image = NSImage(named: "Play")
+		actionButton.image?.size = NSSize(width: 18, height: 18)
 		isRunning = false
 		elapsedTime = 0.0
 		timerTextField.stringValue = "0 seconds"
