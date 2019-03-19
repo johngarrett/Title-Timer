@@ -12,11 +12,13 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 	//ps -eo pid,state,start,etime,,command
 	// /bin/ps
 	@IBOutlet var tableView: NSTableView!
-	
+	var tasks = [Substring]()
+    var uptime = [Substring]()
 	func loadTasks(){
 		let task = Process()
 		task.launchPath = "/bin/ps"
-        task.arguments = ["-eo time, command"]
+        let username = NSUserName()
+        task.arguments = ["-eo time, command", "-u \(username)"]
 		let pipe = Pipe()
 		task.standardOutput = pipe
 		task.standardError = pipe
@@ -35,21 +37,25 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
         -------------*/
         
         for line in output.split(separator: "\n"){
-            var splitLine = line.split(separator: " ")
+            var splitLine = line.split(separator: " ", maxSplits: 1)
             let time = splitLine[0]
-            let command = splitLine.count > 1 ? splitLine[1] : "Unknown task"
+            let command = splitLine.count > 1 ? splitLine[1] : "Unknown Application"
             let path = command.split(separator: "/")
-            let programName = path[path.count - 1]
-            print(time)
-            print(programName)
+
+            if path[0] == "Applications"{ //if the program is known to the user basically
+                let programName = path[path.count - 1] //the last item in the path e.g. /var/apps/name -> name
+                                 .split(separator: "-") //dont read the flags
+                
+                uptime.append(time)
+                tasks.append(programName[0])
+            }
         }
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return 0
+		return tasks.count
 	}
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init("TimerCell"), owner: nil) as? TimerCell {
-			cell.timerTextField.stringValue = "0 seconds"
 			return cell
 		}
 		return nil
