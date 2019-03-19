@@ -37,9 +37,11 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
         for line in output.split(separator: "\n"){
             var splitLine = line.split(separator: " ")
             let time = splitLine[0]
-            let command = splitLine[1]
+            let command = splitLine.count > 1 ? splitLine[1] : "Unknown task"
+            let path = command.split(separator: "/")
+            let programName = path[path.count - 1]
             print(time)
-            print(command)
+            print(programName)
         }
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
