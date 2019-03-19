@@ -14,31 +14,33 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet var tableView: NSTableView!
 	
 	func loadTasks(){
-//		let task = Process()
-//		task.launchPath = "/bin/ps"
-//		task.arguments = ["start", "etime", "command"]
-//
-//		let pipe = Pipe()
-//		task.standardOutput = pipe
-//
-//		let file = pipe.fileHandleForWriting
-//		task.launch()
-//
-//		let data = file.readDataToEndOfFile()
-//
-//		let string = NSString.init(data: data, encoding: String.Encoding.utf8.rawValue)
-//		print(string)
 		let task = Process()
 		task.launchPath = "/bin/ps"
-		
+        task.arguments = ["-eo time, command"]
 		let pipe = Pipe()
 		task.standardOutput = pipe
 		task.standardError = pipe
 		task.launch()
 		task.waitUntilExit()
 		let data = pipe.fileHandleForReading.readDataToEndOfFile()
-		let output: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String
-		print(output)
+        let output: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        /*-----------------
+         Sample Ouput
+         
+         TIME COMMAND
+         7:51.71 /sbin/launchd
+         0:09.53 /usr/sbin/syslogd
+         
+        -------------*/
+        
+        for line in output.split(separator: "\n"){
+            var splitLine = line.split(separator: " ")
+            let time = splitLine[0]
+            let command = splitLine[1]
+            print(time)
+            print(command)
+        }
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return 0
