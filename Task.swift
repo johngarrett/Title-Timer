@@ -22,8 +22,8 @@ struct Task{
     var name: String = "Unknown Application" //application name (not directory)
     var time: String = "0 seconds"           //time string to be displayed
     
-    private var hours: Int?
-    private var mins: Int?
+    private var hours: Int?                 //integer value of hours
+    private var mins: Int?                  //integer value of minutes
     
     init(name n: String, time t: String){
         time = convertTime(t)
@@ -41,16 +41,16 @@ struct Task{
         var splitLine = line.split(separator: " ", maxSplits: 1)
         let taskTime  = splitLine[0]
         let command = splitLine.count > 1 ? splitLine[1] : "Unknown Application"
-        let path = command.split(separator: "/")//split by directories
+        let path = command.split(separator: "/")   //split by directories
         
-        if path[0] == "Applications"{ //if the program is known to the user basically
+        if path[0] == "Applications"{              //if the program is known to the user basically
             let programName = path[path.count - 1] //the last item in the path e.g. /var/apps/name -> name
-                .split(separator: "-") //dont read the flags
+                .split(separator: "-")             //dont read the flags
            
             self.init(name: String(programName[0]), time: String(taskTime))
         }
         else {
-            return nil
+            return nil                             //if it is not something we should show the user, initilization failed
         }
     }
     
