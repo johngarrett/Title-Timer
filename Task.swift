@@ -18,8 +18,9 @@ import Foundation
  -------------*/
 
 struct Task{
-    var name: String = "Unknown Application"
-    var time: String = "0 seconds"
+    var compoundTime = 0                     //total time in minutes
+    var name: String = "Unknown Application" //application name (not directory)
+    var time: String = "0 seconds"           //time string to be displayed
     
     private var hours: Int?
     private var mins: Int?
@@ -61,6 +62,7 @@ struct Task{
         
         hours = Int(hrs)
         mins  = Int(mns)
+        compoundTime = (hours ?? 0) * 60 + (mins ?? 0)
         hrs = hours ?? 0 > 0                                    //see if int is > 0 (not castable == 0)
             ? "\(hours!) \(hours! == 1 ? "hr" : "hrs")"         //convert to int to truncate leading 0s if its == 1, append hr not hrs
             : ""                                                //if it's less than 0, count == 0
@@ -79,23 +81,12 @@ struct Task{
 
 extension Task: Comparable {
     static func == (lhs: Task, rhs: Task) -> Bool {
-        //convert to minutes and compare (e.g. 1 hr 20 mins -> 80 mins)
-        let lhsTime = (lhs.hours ?? 0) * 60 + (lhs.mins ?? 0)
-        let rhsTime = (rhs.hours ?? 0) * 60 + (rhs.mins ?? 0)
-        
-        return lhsTime == rhsTime
+        return lhs.compoundTime == rhs.compoundTime
     }
-    
     static func < (lhs: Task, rhs: Task) -> Bool {
-        let lhsTime = (lhs.hours ?? 0) * 60 + (lhs.mins ?? 0)
-        let rhsTime = (rhs.hours ?? 0) * 60 + (rhs.mins ?? 0)
-
-        return lhsTime < rhsTime
+        return lhs.compoundTime < rhs.compoundTime
     }
     static func > (lhs: Task, rhs: Task) -> Bool {
-        let lhsTime = (lhs.hours ?? 0) * 60 + (lhs.mins ?? 0)
-        let rhsTime = (rhs.hours ?? 0) * 60 + (rhs.mins ?? 0)
-        
-        return lhsTime > rhsTime
+        return lhs.compoundTime > rhs.compoundTime
     }
 }
