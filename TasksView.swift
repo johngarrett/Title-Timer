@@ -14,6 +14,9 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
     var tasks = [Task]() { didSet { tasks = tasks.sorted{ $0 > $1 } } } //sort upon setting
     
 	func loadTasks(){
+        let whitelist = ["Core Sync", "Discord Helper", "Google Chrome Helper", "SafariQuickLookPreview"]
+        UserDefaults.standard.set(whitelist, forKey: "whitelist")
+        UserDefaults.standard.set(["Helper", "Sync", "Service", "Reporter", "Crash", "."], forKey: "disallowed_types")
 		let task = Process()
 		task.launchPath = "/bin/ps"              //the location of the ps command
         task.arguments = ["-eo time, command",   //show uptime and command location

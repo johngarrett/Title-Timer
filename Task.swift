@@ -42,12 +42,21 @@ struct Task{
         let taskTime  = splitLine[0]
         let command = splitLine.count > 1 ? splitLine[1] : "Unknown Application"
         let path = command.split(separator: "/")   //split by directories
-        
         if path[0] == "Applications"{              //if the program is known to the user basically
             let programName = path[path.count - 1] //the last item in the path e.g. /var/apps/name -> name
                 .split(separator: "-")             //dont read the flags
-           
-            self.init(name: String(programName[0]), time: String(taskTime))
+            
+            if let list = UserDefaults.standard.stringArray(forKey: "disallowed_types"){       //refrence against the disallowed types
+                for type in list{                                                              //types we don't want shown, user configurable (e.g. "Helper")
+                    if programName[0].lowercased().contains(type.lowercased()) { return nil }  //fail when the name contains the bannned type. (e.g. "Google Chrome Helper")
+                }
+            }
+            
+            if let list = UserDefaults.standard.stringArray(forKey: "whitelist"){    //try to pull the whitelist from defaults
+                if list.firstIndex(of: String(programName[0])) != nil { return nil } //if the program exists in the whitespace
+            }
+            
+            self.init(name: String(programName[0]), time: String(taskTime)) //if there is no whitelist set
         }
         else {
             return nil                             //if it is not something we should show the user, initilization failed
@@ -69,6 +78,10 @@ struct Task{
         mns  = mins ?? 0 > 0  ? "\(mins!) \(mins! == 1 ? "min" : "mins")" : "" //similar logic to above
         
         return hrs.count + mns.count > 0 ? "\(hrs) \(mns)" : "< 1 minute"
+    }
+    
+    private func checkWhiteSpace(){
+        
     }
 }
 
