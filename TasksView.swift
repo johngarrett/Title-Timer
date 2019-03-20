@@ -9,8 +9,6 @@
 import Cocoa
 
 class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
-	//ps -eo pid,state,start,etime,,command
-	// /bin/ps
 	@IBOutlet var tableView: NSTableView!
     
     var tasks = [Task](){
@@ -19,9 +17,9 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
     
 	func loadTasks(){
 		let task = Process()
-		task.launchPath = "/bin/ps" //the location of the ps command
-        task.arguments = ["-eo time, command",
-                          "-u \(NSUserName())"] //only display processes run by the user
+		task.launchPath = "/bin/ps"              //the location of the ps command
+        task.arguments = ["-eo time, command",   //show uptime and command location
+                          "-u \(NSUserName())"]  //only display processes run by the user
 		let pipe = Pipe()
 		task.standardOutput = pipe
 		task.standardError  = pipe
@@ -32,7 +30,8 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
     
         //convert each line into a task
         for line in output.split(separator: "\n"){
-            if let task = Task.init(fromPSLine: line){
+            if let task = Task.init(fromPSLine: line),
+                                    task.compoundTime > 0{// dont show tasks open for < 1 minute
                 tasks.append(task)
             }
         }
