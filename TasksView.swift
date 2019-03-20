@@ -12,8 +12,35 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 	//ps -eo pid,state,start,etime,,command
 	// /bin/ps
 	@IBOutlet var tableView: NSTableView!
-	var tasks = [Substring]()
-    var uptime = [Substring]()
+    struct Task{
+        var name: String = "Unknown Application"
+        var time: String = "0 seconds"
+        init(name n: String, time t: String){
+            time = convertTime(t)
+            name = n
+        }
+        private var needsConversion = false //does the time need to be converted?
+        private var hours: String?
+        private var mins: String?
+        
+        //convert from 00:00.00 format to 0 hrs 00 mins
+        private func convertTime(_ time: String) -> String{
+            let text = time.split(separator: ":")
+            var hours = String(text[0])
+            var mins = String(text[1].split(separator: ".")[0])
+        
+            hours = Int(hours) ?? 0 > 0                                                   //cast it to int and see if the result is > 0 (not castable == 0)
+                        ? Int(hours)! > 9                                                 //if it's greater than 0, see if its a single digit or not
+                        ? "\(hours) hrs"                                                  //double digits (e.g. 12 hrs)
+                        : "\(String(hours.prefix(1))) \(Int(hours)! == 1 ? "hr" : "hrs")" //truncate it to 1 digit. if its == 1, append hr not hrs
+                    : ""                                                                  //if it's less than 0, count == 0
+            mins  = Int(mins) ?? 0 > 0  ? Int(mins)!  > 9 ? "\(mins) mins" : "\(String(mins.prefix(1))) mins" : "" //similar logic to above
+            
+            return hours.count + mins.count > 0 ? "\(hours) \(mins)" : "< 1 minute"
+        }
+    }
+    
+    var tasks = [Task]()
     
 	func loadTasks(){
 		let task = Process()
@@ -47,9 +74,8 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
                 let programName = path[path.count - 1] //the last item in the path e.g. /var/apps/name -> name
                                  .split(separator: "-") //dont read the flags
                 
-                uptime.append(time)
-                print(programName[0])
-                tasks.append(programName[0])
+                tasks.append(Task(name: String(programName[0]), time: String(time)))
+                
             }
         }
 	}
@@ -59,14 +85,14 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text = ""
-        var id = ""
+        var id   = ""
         
         switch tableColumn{
         case tableView.tableColumns[0]:
-            text = String(tasks[row])
+            text = tasks[row].name
             id = "taskCell"
         case tableView.tableColumns[1]:
-            text = String(uptime[row])
+            text = tasks[row].time
             id = "timeCell"
         default:
             print("Error assigning value")
