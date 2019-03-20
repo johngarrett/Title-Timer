@@ -21,8 +21,8 @@ struct Task{
     var name: String = "Unknown Application"
     var time: String = "0 seconds"
     
-    private var hours: String?
-    private var mins: String?
+    private var hours: Int?
+    private var mins: Int?
     
     init(name n: String, time t: String){
         time = convertTime(t)
@@ -54,22 +54,24 @@ struct Task{
     }
     
     //convert from 00:00.00 format to 0 hrs 00 mins
-    private func convertTime(_ time: String) -> String{
+    private mutating func convertTime(_ time: String) -> String{
         let text = time.split(separator: ":")
-        var hours = String(text[0])
-        var mins = String(text[1].split(separator: ".")[0])
+        var hrs = String(text[0])
+        var mns = String(text[1].split(separator: ".")[0])
         
-        hours = Int(hours) ?? 0 > 0                                    //cast it to int and see if the result is > 0 (not castable == 0)
-            ? "\(Int(hours)!) \(Int(hours)! == 1 ? "hr" : "hrs")"      //convert to int to truncate leading 0s if its == 1, append hr not hrs
-            : ""                                                       //if it's less than 0, count == 0
-        mins  = Int(mins) ?? 0 > 0  ? "\(Int(mins)!) \(Int(mins)! == 1 ? "min" : "mins")" : "" //similar logic to above
+        hours = Int(hrs)
+        mins  = Int(mns)
+        hrs = hours ?? 0 > 0                                    //see if int is > 0 (not castable == 0)
+            ? "\(hours!) \(hours! == 1 ? "hr" : "hrs")"         //convert to int to truncate leading 0s if its == 1, append hr not hrs
+            : ""                                                //if it's less than 0, count == 0
+        mns  = mins ?? 0 > 0  ? "\(mins!) \(mins! == 1 ? "min" : "mins")" : "" //similar logic to above
         
-        return hours.count + mins.count > 0 ? "\(hours) \(mins)" : "< 1 minute"
+        return hrs.count + mns.count > 0 ? "\(hrs) \(mns)" : "< 1 minute"
     }
 }
 
 /*
- allow comparability (<, ==)
+ allow comparability (> , < , ==)
  
  lhs -> left hand side
  rhs -> right hand side
@@ -77,30 +79,23 @@ struct Task{
 
 extension Task: Comparable {
     static func == (lhs: Task, rhs: Task) -> Bool {
-        //extract the time from the mins & hours string (e.g. 12 hrs -> 12)
-        let lhsHours = Int(String((lhs.hours?.split(separator: " ")[0]) ?? "0"))
-        let rhsHours = Int(String(rhs.hours?.split(separator: " ")[0] ?? "0"))
-        let lhsMins  = Int(String(lhs.mins?.split(separator: " ")[0] ?? "0"))
-        let rhsMins  = Int(String(rhs.mins?.split(separator: " ")[0] ?? "0"))
-        
         //convert to minutes and compare (e.g. 1 hr 20 mins -> 80 mins)
-        let lhsTime = (lhsHours ?? 0) * 60 + (lhsMins ?? 0)
-        let rhsTime = (rhsHours ?? 0) * 60 + (rhsMins ?? 0)
+        let lhsTime = (lhs.hours ?? 0) * 60 + (lhs.mins ?? 0)
+        let rhsTime = (rhs.hours ?? 0) * 60 + (rhs.mins ?? 0)
         
         return lhsTime == rhsTime
     }
     
     static func < (lhs: Task, rhs: Task) -> Bool {
-        //extract the time from the mins & hours string (e.g. 12 hrs -> 12)
-        let lhsHours = Int(String((lhs.hours?.split(separator: " ")[0]) ?? "0"))
-        let rhsHours = Int(String(rhs.hours?.split(separator: " ")[0] ?? "0"))
-        let lhsMins  = Int(String(lhs.mins?.split(separator: " ")[0] ?? "0"))
-        let rhsMins  = Int(String(rhs.mins?.split(separator: " ")[0] ?? "0"))
-        
-        //convert to minutes and compare (e.g. 1 hr 20 mins -> 80 mins)
-        let lhsTime = (lhsHours ?? 0) * 60 + (lhsMins ?? 0)
-        let rhsTime = (rhsHours ?? 0) * 60 + (rhsMins ?? 0)
-        
+        let lhsTime = (lhs.hours ?? 0) * 60 + (lhs.mins ?? 0)
+        let rhsTime = (rhs.hours ?? 0) * 60 + (rhs.mins ?? 0)
+
         return lhsTime < rhsTime
+    }
+    static func > (lhs: Task, rhs: Task) -> Bool {
+        let lhsTime = (lhs.hours ?? 0) * 60 + (lhs.mins ?? 0)
+        let rhsTime = (rhs.hours ?? 0) * 60 + (rhs.mins ?? 0)
+        
+        return lhsTime > rhsTime
     }
 }

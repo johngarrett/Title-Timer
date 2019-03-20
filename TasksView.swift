@@ -13,7 +13,9 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 	// /bin/ps
 	@IBOutlet var tableView: NSTableView!
     
-    var tasks = [Task]()
+    var tasks = [Task](){
+        didSet{ tasks = tasks.sorted{ $0 > $1 } } //sort upon setting
+    }
     
 	func loadTasks(){
 		let task = Process()
