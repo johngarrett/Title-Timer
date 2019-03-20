@@ -11,9 +11,7 @@ import Cocoa
 class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet var tableView: NSTableView!
     
-    var tasks = [Task](){
-        didSet{ tasks = tasks.sorted{ $0 > $1 } } //sort upon setting
-    }
+    var tasks = [Task]() { didSet { tasks = tasks.sorted{ $0 > $1 } } } //sort upon setting
     
 	func loadTasks(){
 		let task = Process()
@@ -31,7 +29,7 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
         //convert each line into a task
         for line in output.split(separator: "\n"){
             if let task = Task.init(fromPSLine: line),
-                                    task.compoundTime > 0{// dont show tasks open for < 1 minute
+                                    task.compoundTime > 0{ // dont show tasks open for < 1 minute
                 tasks.append(task)
             }
         }
