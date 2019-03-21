@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D435F6EC22434897003FE9D7 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435F6EB22434897003FE9D7 /* TabViewController.swift */; };
+		D435F6F022434942003FE9D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D435F6EF22434942003FE9D7 /* Main.storyboard */; };
 		D453DF0E22349A2F006C9587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453DF0D22349A2F006C9587 /* AppDelegate.swift */; };
 		D453DF1022349A31006C9587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D453DF0F22349A31006C9587 /* Assets.xcassets */; };
 		D453DF1322349A31006C9587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D453DF1122349A31006C9587 /* MainMenu.xib */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D435F6EB22434897003FE9D7 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		D435F6EF22434942003FE9D7 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D453DF0A22349A2F006C9587 /* Title Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Title Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D453DF0D22349A2F006C9587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D453DF0F22349A31006C9587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		D453DF0122349A2F006C9587 = {
 			isa = PBXGroup;
 			children = (
+				D435F6EF22434942003FE9D7 /* Main.storyboard */,
+				D435F6EB22434897003FE9D7 /* TabViewController.swift */,
 				D473D9E92241CA5000A13A9D /* Task.swift */,
 				D45CE9302235AB8000B3BF82 /* TasksView.swift */,
 				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
@@ -144,6 +150,7 @@
 				D453DF1022349A31006C9587 /* Assets.xcassets in Resources */,
 				D496D42E2234B662005EE248 /* Prefrences.xib in Resources */,
 				D453DF1322349A31006C9587 /* MainMenu.xib in Resources */,
+				D435F6F022434942003FE9D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +166,7 @@
 				D453DF0E22349A2F006C9587 /* AppDelegate.swift in Sources */,
 				D4FCE9F72234A5F7007E9A7F /* TimerCell.swift in Sources */,
 				D473D9EA2241CA5000A13A9D /* Task.swift in Sources */,
+				D435F6EC22434897003FE9D7 /* TabViewController.swift in Sources */,
 				D45CE9312235AB8000B3BF82 /* TasksView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,13 +24,20 @@ class StatusMenuController: NSObject, MenuDelegate {
 		loadTimers()
 		statusItem.title = "⑉"
 		statusItem.menu = menu
-		timerView.delegate = self
-		timerMenuItem = menu.item(withTitle: "Timers")
-		timerMenuItem.view = timerView
-		tasksMenuItem = menu.item(withTitle: "Tasks")
-		tasksMenuItem.view = tasksView
-		tasksView.loadTasks()
-		calculateHeight()
+       
+//        timerView.delegate = self
+        timerMenuItem = menu.item(withTitle: "Timers")
+        
+        let controller = TabViewController.createFromSB()
+
+        
+        timerMenuItem.view = controller.view
+            
+        timerMenuItem.view?.frame = NSRect(x: 0, y: 0, width: 700, height: 700)
+//        tasksMenuItem = menu.item(withTitle: "Tasks")
+//        tasksMenuItem.view = tasksView
+//        tasksView.loadTasks()
+//        calculateHeight()
 	}
 	
 	private func loadTimers(){

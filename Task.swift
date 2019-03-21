@@ -41,6 +41,7 @@ struct Task{
         var splitLine = line.split(separator: " ", maxSplits: 1)
         let taskTime  = splitLine[0]
         let command = splitLine.count > 1 ? splitLine[1] : "Unknown Application"
+        print(command)
         let path = command.split(separator: "/")   //split by directories
         if path[0] == "Applications"{              //if the program is known to the user basically
             let programName = path[path.count - 1] //the last item in the path e.g. /var/apps/name -> name
