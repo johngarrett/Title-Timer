@@ -18,16 +18,20 @@ import Foundation
  -------------*/
 
 struct Task{
-    var compoundTime = 0                     //total time in minutes
-    var name: String = "Unknown Application" //application name (not directory)
-    var time: String = "0 seconds"           //time string to be displayed
+    var iconData: Data?                       //the application's icon
+    var compoundTime = 0                      //total time in minutes
+    var time: String = "0 seconds"            //time string to be displayed
+    var name: String = "Unknown Application"  //application name (not directory)
     
     private var hours: Int?                 //integer value of hours
-    private var mins: Int?                  //integer value of minutes
+    private var mins:  Int?                 //integer value of minutes
+    private var path: String.SubSequence?   //the path to the application
     
-    init(name n: String, time t: String){
+    init(name n: String, time t: String, path p: String.SubSequence?){
         time = convertTime(t)
         name = n
+        path = p
+        loadIcon()
     }
     
     /*
@@ -56,7 +60,7 @@ struct Task{
                 if list.firstIndex(of: String(programName[0])) != nil { return nil } //if the program exists in the whitespace
             }
             
-            self.init(name: String(programName[0]), time: String(taskTime)) //if there is no whitelist set
+            self.init(name: String(programName[0]), time: String(taskTime), path: command) //if there is no whitelist set
         }
         else {
             return nil                             //if it is not something we should show the user, initilization failed
@@ -80,8 +84,36 @@ struct Task{
         return hrs.count + mns.count > 0 ? "\(hrs) \(mns)" : "< 1 minute"
     }
     
-    private func checkWhiteSpace(){
+    /*
+     Extract the application's icon.
+     
+        - Each application's info.plist file (located in /Name.app/Contents) declares its icon file name
+        - The key value the icon is stored in is: "CFBundleIconFile"
+        - Icons are kept in the Resources folder (/Name.app/Contents/Resources) and are of the file type .icns
+
+    */
+    private mutating func loadIcon(){
+        guard let pth = path, iconData == nil else { return }  //only load this image once
+    
+        /*
+         We are looking for the path to the Contents folder
+            - it's usually 2 but some users have nested folders
+         (e.g. /Applications/Slack.app/Contents)
+        */
+        var resourceLocaiton = "/"
+        let folders = pth.split(separator: "/")
+        let index = folders.firstIndex(of: "Contents") ?? 0
+        for dir in folders[0...index]{
+            resourceLocaiton.append("\(dir)/")             //after completion, resource location is .../Contents/
+        }
         
+        let plistFile = "\(resourceLocaiton)Info.plist"                                              //extract each app's info.plist
+        if var iconName = NSDictionary(contentsOfFile: plistFile)?["CFBundleIconFile"] as? String{  //CFBundleIconFile is application's icon name
+            if !iconName.contains(".icns") { iconName.append(".icns") }                              //add extension if it's missing
+            let iconPath = "\(resourceLocaiton)Resources/\(iconName)"                                //.../Contents/Resources/name.icns
+           
+            if let data = FileManager.default.contents(atPath: iconPath){ iconData = data }         //read and set the data
+        }
     }
 }
 

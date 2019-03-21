@@ -57,8 +57,12 @@ class TasksView: NSScrollView, NSTableViewDelegate, NSTableViewDataSource {
             print("Error assigning value")
         }
         
+        
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
+            if let data = tasks[row].iconData{
+                cell.imageView?.image = NSImage(data: data)
+            }
             return cell
         }
         return nil
