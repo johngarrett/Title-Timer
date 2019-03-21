@@ -241,7 +241,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="GyX-FW-bGd"/>
                                                     <constraint firstAttribute="width" constant="30" id="lLF-fX-ikY"/>
                                                 </constraints>
-                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" id="Ijw-EJ-ugp"/>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="Icon" id="Ijw-EJ-ugp"/>
                                             </imageView>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7aa-R9-max">
                                                 <rect key="frame" x="38" y="13" width="115" height="17"/>
@@ -280,7 +280,7 @@
                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                 <prototypeCellViews>
                                     <tableCellView identifier="timeCell" id="W2b-Q7-skL">
-                                        <rect key="frame" x="182.5" y="1" width="115" height="40"/>
+                                        <rect key="frame" x="183" y="1" width="115" height="40"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7A8-lf-xsX">
@@ -329,4 +329,7 @@
             <point key="canvasLocation" x="684" y="204"/>
         </scrollView>
     </objects>
+    <resources>
+        <image name="Icon" width="32" height="32"/>
+    </resources>
 </document>
