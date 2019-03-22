@@ -27,7 +27,7 @@ class StatusMenuController: NSObject, MenuDelegate {
 		timerView.delegate = self
 		timerMenuItem = menu.item(withTitle: "Timers")
 		timerMenuItem.view = timerView
-		tasksMenuItem = menu.item(withTitle: "Tasks")
+        tasksMenuItem = menu.item(withTitle: "Tasks")?.submenu?.item(withTitle: "TaskView")
 		tasksMenuItem.view = tasksView
 		tasksView.loadTasks()
 		calculateHeight()
