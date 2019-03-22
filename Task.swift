@@ -100,6 +100,7 @@ struct Task{
             - it's usually 2 but some users have nested folders
          (e.g. /Applications/Slack.app/Contents)
         */
+        print(pth)
         var resourceLocaiton = "/"
         let folders = pth.split(separator: "/")
         let index = folders.firstIndex(of: "Contents") ?? 0

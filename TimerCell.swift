@@ -13,8 +13,9 @@ class TimerCell: NSTableRowView {
 	@IBOutlet var titleTextField: NSTextField!
 	@IBOutlet var timerTextField: NSTextField!
 	@IBOutlet var actionButton:   NSButton!
-	@IBOutlet var resetButton:    NSButton!
-	
+    @IBOutlet var deleteButton:   NSButton!
+    @IBOutlet var resetButton:    NSButton!
+    
 	private var timerBeganCounting = false
 	private var startTime: CFAbsoluteTime?
 	private var endTime:   CFAbsoluteTime?
@@ -56,11 +57,15 @@ class TimerCell: NSTableRowView {
             timerBeganCounting = true
         }
         timerTextField.stringValue = "Counting..."
+        deleteButton.isEnabled = false
+        resetButton.isEnabled = false
 	}
 	
     public func pauseTimer() { //pause is the only open method
         actionButton.image = NSImage(named: "Play")
         actionButton.image?.size = NSSize(width: 16.5, height: 16.5)
+        deleteButton.isEnabled = true
+        resetButton.isEnabled  = true
         isRunning = false
         endTime = CFAbsoluteTimeGetCurrent()
         guard startTime != nil, endTime != nil else { return }
