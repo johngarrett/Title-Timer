@@ -13,12 +13,13 @@ protocol MenuDelegate{
 }
 
 class StatusMenuController: NSObject, MenuDelegate {
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+
 	@IBOutlet weak var menu: NSMenu!
 	@IBOutlet weak var timerView: TimerView!
 	@IBOutlet weak var tasksView: TasksView!
 	var timerMenuItem: NSMenuItem!
 	var tasksMenuItem: NSMenuItem!
-	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 	
 	override func awakeFromNib() {
 		loadTimers()
