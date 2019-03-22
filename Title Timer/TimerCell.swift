@@ -68,6 +68,7 @@ class TimerCell: NSTableRowView {
         resetButton.isEnabled  = true
         isRunning = false
         endTime = CFAbsoluteTimeGetCurrent()
+        UserDefaults.standard.set(timerTextField.stringValue, forKey: "\(titleTextField.stringValue)_TIME")
         guard startTime != nil, endTime != nil else { return }
         elapsedTime += endTime! - startTime!
         timerBeganCounting = false
