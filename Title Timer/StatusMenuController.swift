@@ -13,10 +13,13 @@ protocol MenuDelegate{
 }
 
 class StatusMenuController: NSObject, MenuDelegate {
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+
 	@IBOutlet weak var menu: NSMenu!
 	@IBOutlet weak var timerView: TimerView!
+	@IBOutlet weak var tasksView: TasksView!
 	var timerMenuItem: NSMenuItem!
-	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+	var tasksMenuItem: NSMenuItem!
 	
 	override func awakeFromNib() {
 		loadTimers()
@@ -25,6 +28,9 @@ class StatusMenuController: NSObject, MenuDelegate {
 		timerView.delegate = self
 		timerMenuItem = menu.item(withTitle: "Timers")
 		timerMenuItem.view = timerView
+        tasksMenuItem = menu.item(withTitle: "Tasks")?.submenu?.item(withTitle: "TaskView")
+		tasksMenuItem.view = tasksView
+		tasksView.loadTasks()
 		calculateHeight()
 	}
 	
@@ -41,9 +47,15 @@ class StatusMenuController: NSObject, MenuDelegate {
 	}
 	
 	@IBAction func quitClicked(_ sender: NSMenuItem) {
+<<<<<<< HEAD:Title Timer/StatusMenuController.swift
 		timerView.saveValues {
 			NSApplication.shared.terminate(self)
 		}
+=======
+        timerView.saveValues {
+            NSApplication.shared.terminate(self)
+        }
+>>>>>>> 0a2ff90599b51d592948bd8743c7eab30bcf19f6:StatusMenuController.swift
 	}
 	@IBAction func prefrencesClicked(_ sender: NSMenuItem) {
 		let prefs = NSViewController(nibName: "Prefrences", bundle: nil)
