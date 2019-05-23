@@ -18,5 +18,7 @@ class PrefrencesViewController: NSViewController {
      allow all apps?
      
      allow lower case first letter?
+     
+     pause timers when screen's closed?
      */
 }
