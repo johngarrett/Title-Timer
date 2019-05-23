@@ -25,12 +25,12 @@
 		D453DF1222349A31006C9587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D453DF1422349A31006C9587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D453DF1522349A31006C9587 /* Title_Timer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Title_Timer.entitlements; sourceTree = "<group>"; };
-		D453DF1B22349EC7006C9587 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		D453DF1B22349EC7006C9587 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusMenuController.swift; path = ../StatusMenuController.swift; sourceTree = "<group>"; };
 		D45CE9302235AB8000B3BF82 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		D473D9E92241CA5000A13A9D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		D496D42D2234B662005EE248 /* Prefrences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Prefrences.xib; sourceTree = "<group>"; };
-		D4FCE9F42234A4C1007E9A7F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
+		D496D42D2234B662005EE248 /* Prefrences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Prefrences.xib; path = ../Prefrences.xib; sourceTree = "<group>"; };
+		D4FCE9F42234A4C1007E9A7F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerView.swift; path = ../TimerView.swift; sourceTree = "<group>"; };
+		D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerCell.swift; path = ../TimerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +47,6 @@
 		D453DF0122349A2F006C9587 = {
 			isa = PBXGroup;
 			children = (
-				D473D9E92241CA5000A13A9D /* Task.swift */,
-				D45CE9302235AB8000B3BF82 /* TasksView.swift */,
-				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
-				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
-				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
-				D496D42D2234B662005EE248 /* Prefrences.xib */,
 				D453DF0C22349A2F006C9587 /* Title Timer */,
 				D453DF0B22349A2F006C9587 /* Products */,
 			);
@@ -69,6 +63,8 @@
 		D453DF0C22349A2F006C9587 /* Title Timer */ = {
 			isa = PBXGroup;
 			children = (
+				D473D9E92241CA5000A13A9D /* Task.swift */,
+				D45CE9302235AB8000B3BF82 /* TasksView.swift */,
 				D453DF1B22349EC7006C9587 /* StatusMenuController.swift */,
 				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
 				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
@@ -114,6 +110,7 @@
 				TargetAttributes = {
 					D453DF0922349A2F006C9587 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -232,7 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -287,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -311,7 +308,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "johnPersonal.Title-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -330,7 +327,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "johnPersonal.Title-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
