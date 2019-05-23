@@ -13,6 +13,7 @@
 		D453DF1C22349EC7006C9587 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453DF1B22349EC7006C9587 /* StatusMenuController.swift */; };
 		D45CE9312235AB8000B3BF82 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45CE9302235AB8000B3BF82 /* TasksView.swift */; };
 		D473D9EA2241CA5000A13A9D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473D9E92241CA5000A13A9D /* Task.swift */; };
+		D48C476A2296296D00FDAE1B /* PrefrencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C47692296296D00FDAE1B /* PrefrencesViewController.swift */; };
 		D496D42E2234B662005EE248 /* Prefrences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D496D42D2234B662005EE248 /* Prefrences.xib */; };
 		D4FCE9F52234A4C1007E9A7F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE9F42234A4C1007E9A7F /* TimerView.swift */; };
 		D4FCE9F72234A5F7007E9A7F /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */; };
@@ -28,6 +29,7 @@
 		D453DF1B22349EC7006C9587 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusMenuController.swift; path = ../StatusMenuController.swift; sourceTree = "<group>"; };
 		D45CE9302235AB8000B3BF82 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		D473D9E92241CA5000A13A9D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		D48C47692296296D00FDAE1B /* PrefrencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefrencesViewController.swift; sourceTree = "<group>"; };
 		D496D42D2234B662005EE248 /* Prefrences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Prefrences.xib; path = ../Prefrences.xib; sourceTree = "<group>"; };
 		D4FCE9F42234A4C1007E9A7F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerView.swift; path = ../TimerView.swift; sourceTree = "<group>"; };
 		D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerCell.swift; path = ../TimerCell.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				D4FCE9F42234A4C1007E9A7F /* TimerView.swift */,
 				D4FCE9F62234A5F7007E9A7F /* TimerCell.swift */,
 				D496D42D2234B662005EE248 /* Prefrences.xib */,
+				D48C47692296296D00FDAE1B /* PrefrencesViewController.swift */,
 				D453DF1122349A31006C9587 /* MainMenu.xib */,
 				D453DF0F22349A31006C9587 /* Assets.xcassets */,
 				D453DF1422349A31006C9587 /* Info.plist */,
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4FCE9F52234A4C1007E9A7F /* TimerView.swift in Sources */,
+				D48C476A2296296D00FDAE1B /* PrefrencesViewController.swift in Sources */,
 				D453DF1C22349EC7006C9587 /* StatusMenuController.swift in Sources */,
 				D453DF0E22349A2F006C9587 /* AppDelegate.swift in Sources */,
 				D4FCE9F72234A5F7007E9A7F /* TimerCell.swift in Sources */,

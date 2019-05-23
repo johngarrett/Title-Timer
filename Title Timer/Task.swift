@@ -53,6 +53,7 @@ struct Task{
             if let list = UserDefaults.standard.stringArray(forKey: "disallowed_types"){       //refrence against the disallowed types
                 for type in list{                                                              //types we don't want shown, user configurable (e.g. "Helper")
                     if programName[0].lowercased().contains(type.lowercased()) { return nil }  //fail when the name contains the bannned type. (e.g. "Google Chrome Helper")
+                    else if programName.first?.first?.isLowercase ?? false { return nil }      //fail when the first letter is lowercases (most programs that aren't background application)
                 }
             }
             
